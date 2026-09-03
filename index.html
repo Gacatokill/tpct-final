@@ -363,7 +363,7 @@ async function chargerProduitsShopify() {
       const origPrice=parseFloat(p.variants.edges[0]?.node?.price?.amount||0);
       const price=PRICE_MAP(p.title,cat,origPrice);
       const img=p.images.edges[0]?.node?.url||'';
-      return{id:idx++,title:p.title,price,original_price:origPrice,category:cat,image:img,stock:8};
+      return{id:idx++,title:p.title,price,original_price:origPrice,category:cat,image:img,stock:99};
     });
 
   console.log(`✅ ${PRODUITS.length} plats dans "Ton Plat Chez Toi"`);
