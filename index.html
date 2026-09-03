@@ -178,6 +178,15 @@ footer{background:var(--marron);color:rgba(255,255,255,.8);text-align:center;pad
 .admin-pin-input:focus{border-color:var(--rouge)}
 .admin-pin-btn{width:100%;background:var(--rouge);color:white;border:none;border-radius:10px;padding:13px;font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;cursor:pointer}
 .admin-pin-err{color:var(--rouge);font-size:13px;margin-top:8px;display:none}
+
+/* Shopify Buy Button container */
+#shopify-collection-container {
+  margin-top: 0;
+}
+/* Hide old catalogue elements - now using Shopify Buy Button */
+.filtres, #grille, .section-newsletter {
+  display: none !important;
+}
 </style>
 </head>
 <body>
@@ -262,6 +271,10 @@ footer{background:var(--marron);color:rgba(255,255,255,.8);text-align:center;pad
     <div class="search-bar"><input type="text" id="search-input" placeholder="Rechercher un plat..." oninput="rechercher(this.value)" /></div>
   </div>
   <div class="grille" id="grille"></div>
+  <!-- Shopify Buy Button -->
+  <div id="shopify-collection-container" style="padding:0 16px 40px">
+    <div id='collection-component-1788430031965'></div>
+  </div>
 </main>
 </div>
 <footer>
@@ -679,6 +692,94 @@ function quitterAdmin() {
 }
 
 
+</script>
+
+<script type="text/javascript">
+(function () {
+  var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+  if (window.ShopifyBuy) {
+    if (window.ShopifyBuy.UI) { ShopifyBuyInit(); } else { loadScript(); }
+  } else { loadScript(); }
+  function loadScript() {
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = scriptURL;
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
+    script.onload = ShopifyBuyInit;
+  }
+  function ShopifyBuyInit() {
+    var client = ShopifyBuy.buildClient({
+      domain: 'jaime-les-raviolis.myshopify.com',
+      storefrontAccessToken: '4a7f3d73c5cbb77b54fdda98ff60ea3b',
+    });
+    ShopifyBuy.UI.onReady(client).then(function (ui) {
+      ui.createComponent('collection', {
+        id: '699561443673',
+        node: document.getElementById('collection-component-1788430031965'),
+        moneyFormat: '%E2%82%AC%7B%7Bamount_with_comma_separator%7D%7D',
+        options: {
+          "product": {
+            "styles": {
+              "product": {
+                "@media (min-width: 601px)": {
+                  "max-width": "calc(25% - 20px)",
+                  "margin-left": "20px",
+                  "margin-bottom": "50px",
+                  "width": "calc(25% - 20px)"
+                }
+              },
+              "button": {
+                "font-family": "Nunito, sans-serif",
+                "font-size": "14px",
+                "padding-top": "10px",
+                "padding-bottom": "10px",
+                "background-color": "#C0392B",
+                ":hover": { "background-color": "#E74C3C" },
+                "border-radius": "10px"
+              }
+            },
+            "text": { "button": "Ajouter au panier" }
+          },
+          "productSet": {
+            "styles": {
+              "products": {
+                "@media (min-width: 601px)": { "margin-left": "-20px" }
+              }
+            }
+          },
+          "modalProduct": {
+            "contents": {
+              "img": false,
+              "imgWithCarousel": true,
+              "button": false,
+              "buttonWithQuantity": true
+            },
+            "text": { "button": "Ajouter au panier" }
+          },
+          "cart": {
+            "text": {
+              "total": "Sous-total",
+              "button": "Commander"
+            },
+            "styles": {
+              "button": {
+                "font-family": "Nunito, sans-serif",
+                "background-color": "#C0392B",
+                ":hover": { "background-color": "#E74C3C" }
+              }
+            }
+          },
+          "toggle": {
+            "styles": {
+              "toggle": { "background-color": "#C0392B" },
+              "count": { "font-family": "Nunito, sans-serif" }
+            }
+          }
+        }
+      });
+    });
+  }
+})();
 </script>
 </body>
 </html>
