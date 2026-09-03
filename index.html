@@ -419,7 +419,7 @@ function mettreAJourFiltres(){
 }
 function renderProduits(){
   const grille=document.getElementById('grille');
-  const{ouvert}=calculerStatut();
+  const ouvert=(typeof forceOuvert!=='undefined')&&forceOuvert;
   let liste=PRODUITS;
   if(categorieActive!=='Tous')liste=liste.filter(p=>p.category===categorieActive);
   if(searchQuery){const q=searchQuery.toLowerCase();liste=liste.filter(p=>p.title.toLowerCase().includes(q)||p.category.toLowerCase().includes(q));}
