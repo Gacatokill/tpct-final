@@ -6,315 +6,170 @@
 <title>Ton Plat Chez Toi — Livraison de plats cuisinés</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Inter', sans-serif; background: #fff; color: #1a1a1a; font-size: 14px; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#fff;color:#1a1a1a;font-size:14px}
 
-/* BANNIERE */
-#banniere {
-  background: #1a1a1a;
-  color: white;
-  text-align: center;
-  padding: 10px;
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-}
-#banniere.ouvert { background: #2d6a4f; }
+#banniere{background:#1a1a1a;color:white;text-align:center;padding:10px;font-size:13px;font-weight:500}
+#banniere.ouvert{background:#2d6a4f}
 
-/* HEADER */
-header {
-  border-bottom: 1px solid #e5e5e5;
-  padding: 0 40px;
-  position: sticky;
-  top: 0;
-  background: white;
-  z-index: 100;
-}
-.header-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 64px;
-}
-.logo {
-  font-size: 22px;
-  font-weight: 600;
-  color: #1a1a1a;
-  letter-spacing: -0.03em;
-  text-decoration: none;
-}
-.logo span { color: #c8553d; }
+header{border-bottom:1px solid #e5e5e5;padding:0 40px;position:sticky;top:0;background:white;z-index:100}
+.header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-size:22px;font-weight:600;color:#1a1a1a;letter-spacing:-0.03em;text-decoration:none}
+.logo span{color:#c8553d}
+.header-right{display:flex;align-items:center;gap:20px}
+.livraison-info{font-size:12px;color:#888}
 
-/* NAV catégories */
-nav {
-  border-bottom: 1px solid #e5e5e5;
-  overflow-x: auto;
-  white-space: nowrap;
-  scrollbar-width: none;
-}
-nav::-webkit-scrollbar { display: none; }
-.nav-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 40px;
-  display: flex;
-  gap: 0;
-}
-.nav-item {
-  padding: 12px 16px;
-  font-size: 12px;
-  font-weight: 500;
-  color: #666;
-  cursor: pointer;
-  border-bottom: 2px solid transparent;
-  transition: all 0.15s;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  white-space: nowrap;
-}
-.nav-item:hover { color: #1a1a1a; }
-.nav-item.actif { color: #1a1a1a; border-bottom-color: #1a1a1a; }
+nav{border-bottom:1px solid #e5e5e5;overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 40px;display:flex;gap:0}
+.nav-item{padding:14px 18px;font-size:12px;font-weight:500;color:#666;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+.nav-item:hover{color:#1a1a1a}
+.nav-item.actif{color:#1a1a1a;border-bottom-color:#1a1a1a}
+.nav-count{font-size:10px;color:#aaa;margin-left:4px}
 
-/* HERO - site fermé */
-.hero-ferme {
-  background: #f8f8f8;
-  padding: 80px 40px;
-  text-align: center;
-}
-.hero-ferme h1 {
-  font-size: 32px;
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  margin-bottom: 12px;
-  color: #1a1a1a;
-}
-.hero-ferme p {
-  color: #666;
-  font-size: 16px;
-  margin-bottom: 40px;
-}
+/* SITE FERMÉ */
+.hero-ferme{background:#f8f8f8;padding:80px 40px;text-align:center}
+.hero-ferme h1{font-size:32px;font-weight:600;letter-spacing:-0.03em;margin-bottom:12px}
+.hero-ferme p{color:#666;font-size:16px;margin-bottom:40px}
+.form-inscription{background:white;border:1px solid #e5e5e5;padding:32px;max-width:440px;margin:0 auto}
+.form-inscription h2{font-size:16px;font-weight:600;margin-bottom:6px}
+.form-inscription p{font-size:13px;color:#666;margin-bottom:20px}
+.form-inscription input{width:100%;padding:10px 12px;border:1px solid #ddd;font-family:'Inter',sans-serif;font-size:14px;margin-bottom:10px;outline:none;transition:border-color .15s}
+.form-inscription input:focus{border-color:#1a1a1a}
+.btn-inscription{width:100%;background:#1a1a1a;color:white;border:none;padding:12px;font-family:'Inter',sans-serif;font-size:14px;font-weight:500;cursor:pointer}
+.btn-inscription:hover{background:#333}
+.succes-msg{display:none;color:#2d6a4f;font-size:13px;font-weight:500;text-align:center;margin-top:12px;padding:10px;border:1px solid #2d6a4f}
 
-/* Formulaire inscription */
-.form-inscription {
-  background: white;
-  border: 1px solid #e5e5e5;
-  border-radius: 4px;
-  padding: 32px;
-  max-width: 440px;
-  margin: 0 auto;
-}
-.form-inscription h2 {
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 6px;
-}
-.form-inscription p {
-  font-size: 13px;
-  color: #666;
-  margin-bottom: 20px;
-}
-.form-inscription input {
-  width: 100%;
-  padding: 10px 12px;
-  border: 1px solid #ddd;
-  border-radius: 2px;
-  font-family: 'Inter', sans-serif;
-  font-size: 14px;
-  margin-bottom: 10px;
-  outline: none;
-  transition: border-color 0.15s;
-}
-.form-inscription input:focus { border-color: #1a1a1a; }
-.btn-inscription {
-  width: 100%;
-  background: #1a1a1a;
-  color: white;
-  border: none;
-  border-radius: 2px;
-  padding: 12px;
-  font-family: 'Inter', sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.15s;
-}
-.btn-inscription:hover { background: #333; }
-.succes-inscription {
-  display: none;
-  background: #f0faf4;
-  border: 1px solid #2d6a4f;
-  border-radius: 2px;
-  padding: 12px;
-  font-size: 13px;
-  color: #2d6a4f;
-  font-weight: 500;
-  text-align: center;
-  margin-top: 10px;
-}
+/* SITE OUVERT */
+.hero-ouvert{background:#f8f8f8;padding:32px 40px;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid #e5e5e5}
+.hero-ouvert h1{font-size:24px;font-weight:600;letter-spacing:-0.02em;margin-bottom:6px}
+.hero-ouvert p{color:#666;font-size:14px}
+.hero-badges{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.hero-badge{background:white;border:1px solid #e5e5e5;padding:5px 10px;font-size:11px;font-weight:500;color:#444}
 
-/* MAIN - site ouvert */
-main {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 32px 40px;
-}
+main{max-width:1200px;margin:0 auto;padding:32px 40px}
 
-/* Hero ouvert */
-.hero-ouvert {
-  background: #f8f8f8;
-  padding: 40px;
-  margin-bottom: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-}
-.hero-ouvert h1 {
-  font-size: 28px;
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  margin-bottom: 8px;
-}
-.hero-ouvert p { color: #666; font-size: 15px; }
-.hero-badges {
-  display: flex;
-  gap: 8px;
-  margin-top: 16px;
-  flex-wrap: wrap;
-}
-.hero-badge {
-  background: white;
-  border: 1px solid #e5e5e5;
-  border-radius: 2px;
-  padding: 5px 10px;
-  font-size: 12px;
-  font-weight: 500;
-  color: #444;
-}
+/* GRILLE PRODUITS */
+.produits-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e5e5e5;border:1px solid #e5e5e5}
+.produit-card{background:white;cursor:pointer;transition:opacity .15s}
+.produit-card:hover{opacity:.9}
+.produit-img{width:100%;aspect-ratio:1;overflow:hidden;background:#f5f5f5;position:relative}
+.produit-img img{width:100%;height:100%;object-fit:cover}
+.produit-img-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:32px;background:#f5f5f5}
+.produit-badge-epuise{position:absolute;top:8px;left:8px;background:#1a1a1a;color:white;font-size:11px;padding:3px 8px;font-weight:500}
+.produit-info{padding:12px}
+.produit-titre{font-size:13px;font-weight:500;color:#1a1a1a;margin-bottom:4px;line-height:1.4}
+.produit-prix{font-size:13px;color:#1a1a1a}
+.produit-prix-original{font-size:12px;color:#aaa;text-decoration:line-through;margin-left:6px}
+.btn-ajout{width:100%;background:#1a1a1a;color:white;border:none;padding:10px;font-family:'Inter',sans-serif;font-size:12px;font-weight:500;cursor:pointer;margin-top:8px;transition:background .15s}
+.btn-ajout:hover{background:#333}
+.btn-ajout:disabled{background:#ccc;cursor:default}
+.btn-ajout.ajoute{background:#2d6a4f}
 
-/* Shopify Buy Button container */
-#shopify-buy-container {
-  min-height: 200px;
-}
+/* PANIER */
+.panier-btn{position:relative;background:none;border:1px solid #e5e5e5;padding:8px 14px;font-family:'Inter',sans-serif;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:8px;transition:all .15s}
+.panier-btn:hover{border-color:#1a1a1a}
+.panier-badge{background:#1a1a1a;color:white;border-radius:50%;width:18px;height:18px;font-size:10px;font-weight:600;display:flex;align-items:center;justify-content:center}
 
-/* Override Shopify Buy Button styles */
-.shopify-buy__product {
-  font-family: 'Inter', sans-serif !important;
-}
+/* PANIER PANEL */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:200;opacity:0;pointer-events:none;transition:opacity .2s}
+.overlay.visible{opacity:1;pointer-events:all}
+.panier-panel{position:fixed;right:-480px;top:0;bottom:0;width:100%;max-width:480px;background:white;z-index:300;display:flex;flex-direction:column;transition:right .3s;border-left:1px solid #e5e5e5}
+.panier-panel.visible{right:0}
+.panier-header{padding:20px 24px;border-bottom:1px solid #e5e5e5;display:flex;align-items:center;justify-content:space-between}
+.panier-header h2{font-size:16px;font-weight:600}
+.btn-close{background:none;border:none;font-size:20px;cursor:pointer;color:#666;line-height:1}
+.panier-items{flex:1;overflow-y:auto;padding:0}
+.panier-vide{text-align:center;padding:60px 20px;color:#888;font-size:14px}
+.panier-item{display:flex;gap:12px;padding:16px 24px;border-bottom:1px solid #f0f0f0;align-items:flex-start}
+.panier-item img{width:64px;height:64px;object-fit:cover;background:#f5f5f5;flex-shrink:0}
+.panier-item-info{flex:1}
+.panier-item-titre{font-size:13px;font-weight:500;margin-bottom:4px;line-height:1.4}
+.panier-item-prix{font-size:13px;color:#666}
+.panier-item-qte{display:flex;align-items:center;gap:8px;margin-top:8px}
+.qte-btn{width:24px;height:24px;border:1px solid #ddd;background:none;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.qte-val{font-size:13px;font-weight:500;min-width:20px;text-align:center}
+.btn-suppr{background:none;border:none;color:#aaa;cursor:pointer;font-size:16px;padding:2px;margin-left:auto}
+.panier-footer{padding:20px 24px;border-top:1px solid #e5e5e5}
+.panier-total{display:flex;justify-content:space-between;font-size:15px;font-weight:600;margin-bottom:16px}
+.panier-paiements{display:flex;gap:8px;margin-bottom:16px}
+.pill-paiement{font-size:11px;color:#666;border:1px solid #e5e5e5;padding:4px 10px}
+.btn-checkout{width:100%;background:#1a1a1a;color:white;border:none;padding:14px;font-family:'Inter',sans-serif;font-size:14px;font-weight:500;cursor:pointer;transition:background .15s}
+.btn-checkout:hover{background:#333}
+.btn-checkout:disabled{background:#ccc;cursor:default}
+
+/* MODAL COMMANDE */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:400;display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;pointer-events:none;transition:opacity .2s}
+.modal-overlay.visible{opacity:1;pointer-events:all}
+.modal{background:white;padding:32px;max-width:500px;width:100%;max-height:90vh;overflow-y:auto}
+.modal h2{font-size:18px;font-weight:600;margin-bottom:4px}
+.modal-sub{font-size:13px;color:#666;margin-bottom:24px}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#666;margin-bottom:6px}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:10px 12px;border:1px solid #ddd;font-family:'Inter',sans-serif;font-size:14px;outline:none;transition:border-color .15s}
+.form-group input:focus,.form-group textarea:focus{border-color:#1a1a1a}
+.form-group textarea{min-height:70px;resize:vertical}
+.paiement-choix{display:flex;gap:10px;margin-top:6px}
+.paiement-opt{flex:1;padding:12px;border:1px solid #ddd;cursor:pointer;text-align:center;transition:all .15s}
+.paiement-opt:hover{border-color:#1a1a1a}
+.paiement-opt.sel{border-color:#1a1a1a;background:#f8f8f8}
+.paiement-opt .ico{font-size:22px;margin-bottom:4px}
+.paiement-opt .nom{font-size:12px;font-weight:600}
+.paiement-opt .desc{font-size:11px;color:#888;margin-top:2px}
+.modal-recap{background:#f8f8f8;padding:14px;margin:18px 0;font-size:13px}
+.modal-recap-titre{font-weight:600;margin-bottom:8px}
+.recap-ligne{display:flex;justify-content:space-between;padding:2px 0;color:#444}
+.recap-total{display:flex;justify-content:space-between;font-weight:600;border-top:1px solid #e5e5e5;padding-top:8px;margin-top:6px}
+.newsletter-check{display:flex;align-items:flex-start;gap:8px;padding:12px;background:#f8f8f8;margin-bottom:18px;cursor:pointer}
+.newsletter-check input{width:16px;height:16px;flex-shrink:0;margin-top:2px;accent-color:#1a1a1a;cursor:pointer}
+.newsletter-check span{font-size:13px;font-weight:500}
+.newsletter-check small{display:block;font-size:11px;color:#888;margin-top:1px}
+.btn-valider{width:100%;background:#1a1a1a;color:white;border:none;padding:14px;font-family:'Inter',sans-serif;font-size:14px;font-weight:500;cursor:pointer;margin-bottom:8px;transition:background .15s}
+.btn-valider:hover{background:#333}
+.btn-annuler{width:100%;background:none;border:1px solid #e5e5e5;padding:12px;font-family:'Inter',sans-serif;font-size:13px;cursor:pointer;color:#666;transition:all .15s}
+.btn-annuler:hover{border-color:#1a1a1a;color:#1a1a1a}
+.confirmation{text-align:center;padding:16px 0}
+.confirmation-ico{font-size:48px;margin-bottom:16px}
+.confirmation h3{font-size:20px;font-weight:600;margin-bottom:8px}
+.confirmation p{font-size:14px;color:#666;margin-bottom:6px}
+.especes-info{background:#f8f8f8;padding:12px;font-size:13px;font-weight:500;margin:14px 0}
+
+/* LOADING */
+.loading{text-align:center;padding:60px 20px;color:#888;font-size:14px}
+.no-results{text-align:center;padding:60px 20px;color:#888;font-size:14px;grid-column:1/-1}
 
 /* ADMIN BAR */
-.admin-bar {
-  position: fixed;
-  bottom: 0; left: 0; right: 0;
-  background: #1a1a1a;
-  padding: 12px 24px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  z-index: 999;
-  display: none;
-}
-.admin-bar.visible { display: flex; }
-.admin-label { color: rgba(255,255,255,0.5); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; }
-.toggle-wrap {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  cursor: pointer;
-  background: rgba(255,255,255,0.1);
-  border-radius: 2px;
-  padding: 7px 14px;
-  border: none;
-  font-family: 'Inter', sans-serif;
-}
-.toggle {
-  width: 36px; height: 20px;
-  background: #555;
-  border-radius: 10px;
-  position: relative;
-  transition: background 0.2s;
-  flex-shrink: 0;
-}
-.toggle.on { background: #2d6a4f; }
-.toggle::after {
-  content: '';
-  position: absolute;
-  width: 14px; height: 14px;
-  background: white;
-  border-radius: 50%;
-  top: 3px; left: 3px;
-  transition: left 0.2s;
-}
-.toggle.on::after { left: 19px; }
-.toggle-label { color: white; font-size: 13px; font-weight: 500; }
-.admin-btn {
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.2);
-  color: white;
-  border-radius: 2px;
-  padding: 6px 12px;
-  font-family: 'Inter', sans-serif;
-  font-size: 12px;
-  cursor: pointer;
-  margin-left: auto;
-}
-.admin-btn:hover { background: rgba(255,255,255,0.2); }
-.admin-status { color: rgba(255,255,255,0.6); font-size: 12px; }
+.admin-bar{position:fixed;bottom:0;left:0;right:0;background:#1a1a1a;padding:12px 24px;display:none;align-items:center;gap:16px;z-index:999}
+.admin-bar.visible{display:flex}
+.admin-label{color:rgba(255,255,255,.5);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em}
+.toggle-wrap{display:flex;align-items:center;gap:10px;cursor:pointer;background:rgba(255,255,255,.1);padding:7px 14px;border:none;font-family:'Inter',sans-serif}
+.toggle{width:36px;height:20px;background:#555;border-radius:10px;position:relative;transition:background .2s;flex-shrink:0}
+.toggle.on{background:#2d6a4f}
+.toggle::after{content:'';position:absolute;width:14px;height:14px;background:white;border-radius:50%;top:3px;left:3px;transition:left .2s}
+.toggle.on::after{left:19px}
+.toggle-lbl{color:white;font-size:13px;font-weight:500}
+.admin-status-txt{color:rgba(255,255,255,.6);font-size:12px}
+.admin-quit{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:white;padding:6px 12px;font-family:'Inter',sans-serif;font-size:12px;cursor:pointer;margin-left:auto}
 
-/* PIN modal */
-.pin-overlay {
-  position: fixed; inset: 0;
-  background: rgba(0,0,0,0.5);
-  z-index: 1000;
-  display: flex; align-items: center; justify-content: center;
-  display: none;
-}
-.pin-overlay.visible { display: flex; }
-.pin-box {
-  background: white;
-  padding: 32px;
-  border-radius: 4px;
-  max-width: 300px;
-  width: 100%;
-  text-align: center;
-}
-.pin-box h3 { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
-.pin-box p { font-size: 13px; color: #666; margin-bottom: 20px; }
-.pin-input {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 2px;
-  font-size: 20px;
-  text-align: center;
-  letter-spacing: 0.3em;
-  font-family: 'Inter', sans-serif;
-  margin-bottom: 12px;
-  outline: none;
-}
-.pin-input:focus { border-color: #1a1a1a; }
-.pin-btn {
-  width: 100%;
-  background: #1a1a1a;
-  color: white;
-  border: none;
-  border-radius: 2px;
-  padding: 12px;
-  font-family: 'Inter', sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-}
-.pin-err { color: #c8553d; font-size: 12px; margin-top: 8px; display: none; }
+/* PIN */
+.pin-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1000;display:none;align-items:center;justify-content:center}
+.pin-overlay.visible{display:flex}
+.pin-box{background:white;padding:32px;max-width:300px;width:100%;text-align:center}
+.pin-box h3{font-size:16px;font-weight:600;margin-bottom:6px}
+.pin-box p{font-size:13px;color:#666;margin-bottom:20px}
+.pin-input{width:100%;padding:12px;border:1px solid #ddd;font-size:20px;text-align:center;letter-spacing:.3em;font-family:'Inter',sans-serif;margin-bottom:12px;outline:none}
+.pin-input:focus{border-color:#1a1a1a}
+.pin-btn{width:100%;background:#1a1a1a;color:white;border:none;padding:12px;font-family:'Inter',sans-serif;font-size:14px;font-weight:500;cursor:pointer}
+.pin-err{color:#c8553d;font-size:12px;margin-top:8px;display:none}
 
-@media (max-width: 768px) {
-  header { padding: 0 16px; }
-  .nav-inner { padding: 0 16px; }
-  main { padding: 24px 16px; }
-  .hero-ouvert { padding: 24px; flex-direction: column; }
-  .hero-ferme { padding: 60px 16px; }
+@media(max-width:900px){.produits-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:640px){
+  header{padding:0 16px}
+  .nav-inner{padding:0 16px}
+  main{padding:20px 16px}
+  .hero-ouvert{padding:20px 16px;flex-direction:column}
+  .hero-ferme{padding:60px 16px}
+  .produits-grid{grid-template-columns:repeat(2,1fr)}
 }
 </style>
 </head>
@@ -325,17 +180,22 @@ main {
 <header>
   <div class="header-inner">
     <a class="logo" href="#">Ton Plat <span>Chez Toi</span></a>
-    <div style="font-size:13px;color:#666">Livraison mardi & mercredi</div>
+    <div class="header-right">
+      <span class="livraison-info">Livraison mardi & mercredi</span>
+      <button class="panier-btn" id="btn-panier" onclick="ouvrirPanier()" style="display:none">
+        🛒 Panier <span class="panier-badge" id="badge-nb">0</span>
+      </button>
+    </div>
   </div>
 </header>
 
 <nav>
   <div class="nav-inner" id="nav-cats">
-    <div class="nav-item actif" onclick="filtrerCat('tous', this)">Tous les plats</div>
-    <div class="nav-item" onclick="filtrerCat('entrees', this)">Salades & Entrées</div>
-    <div class="nav-item" onclick="filtrerCat('lasagnes', this)">Lasagnes & Gratins</div>
-    <div class="nav-item" onclick="filtrerCat('plats', this)">Plats cuisinés</div>
-    <div class="nav-item" onclick="filtrerCat('sauces', this)">Sauces & Pesto</div>
+    <div class="nav-item actif" onclick="filtrer('Tous',this)">Tous <span class="nav-count" id="cnt-tous"></span></div>
+    <div class="nav-item" onclick="filtrer('Entrées',this)">Salades & Entrées <span class="nav-count" id="cnt-entrees"></span></div>
+    <div class="nav-item" onclick="filtrer('Lasagnes et Gratins',this)">Lasagnes & Gratins <span class="nav-count" id="cnt-lasagnes"></span></div>
+    <div class="nav-item" onclick="filtrer('Plats Tradition traiteur',this)">Plats cuisinés <span class="nav-count" id="cnt-plats"></span></div>
+    <div class="nav-item" onclick="filtrer('Sauces et Pesto',this)">Sauces & Pesto <span class="nav-count" id="cnt-sauces"></span></div>
   </div>
 </nav>
 
@@ -348,49 +208,71 @@ main {
       <h2>📬 Être prévenu à l'ouverture</h2>
       <p>SMS + email dès que le menu est en ligne. Places limitées !</p>
       <div id="form-fields">
-        <input type="text" id="prenom" placeholder="Votre prénom *" />
-        <input type="email" id="email" placeholder="Votre email *" />
-        <input type="tel" id="tel" placeholder="Votre mobile (SMS)" />
+        <input type="text" id="prenom" placeholder="Votre prénom *"/>
+        <input type="email" id="email" placeholder="Votre email *"/>
+        <input type="tel" id="tel" placeholder="Votre mobile (SMS)"/>
         <button class="btn-inscription" onclick="inscrire()">Je veux être prévenu !</button>
       </div>
-      <div class="succes-inscription" id="succes">✓ Inscription confirmée ! Vous serez prévenu dès l'ouverture.</div>
+      <div class="succes-msg" id="succes-inscription">✓ Inscription confirmée ! Vous serez prévenu dès l'ouverture.</div>
     </div>
   </div>
 </div>
 
 <!-- SITE OUVERT -->
 <div id="site-ouvert" style="display:none">
-  <main>
-    <div class="hero-ouvert">
-      <div>
-        <h1>Plats cuisinés livrés chez vous</h1>
-        <p>Portions individuelles · Livraison mardi après-midi ou mercredi matin</p>
-        <div class="hero-badges">
-          <span class="hero-badge">📅 Commandes sam–lun</span>
-          <span class="hero-badge">🚐 Livraison mar/mer</span>
-          <span class="hero-badge">💶 CB ou espèces</span>
-          <span class="hero-badge">📦 Quantités limitées</span>
-        </div>
+  <div class="hero-ouvert">
+    <div>
+      <h1>Plats cuisinés livrés chez vous</h1>
+      <p>Portions individuelles · Commandes sam–lun · Livraison mardi ou mercredi</p>
+      <div class="hero-badges">
+        <span class="hero-badge">📅 Sam–Lun</span>
+        <span class="hero-badge">🚐 Mar/Mer</span>
+        <span class="hero-badge">💶 CB ou espèces</span>
+        <span class="hero-badge">📦 Quantités limitées</span>
       </div>
     </div>
-    <div id="shopify-buy-container">
-      <div id='collection-component-1788430031965'></div>
+  </div>
+  <main>
+    <div class="produits-grid" id="grille">
+      <div class="loading" style="grid-column:1/-1">Chargement du catalogue...</div>
     </div>
   </main>
 </div>
 
-<!-- ADMIN BAR -->
+<!-- OVERLAY + PANIER -->
+<div class="overlay" id="overlay" onclick="fermerPanier()"></div>
+<div class="panier-panel" id="panier-panel">
+  <div class="panier-header">
+    <h2>Mon panier</h2>
+    <button class="btn-close" onclick="fermerPanier()">✕</button>
+  </div>
+  <div class="panier-items" id="panier-items"></div>
+  <div class="panier-footer">
+    <div class="panier-total"><span>Total</span><span id="panier-total">0,00 €</span></div>
+    <div class="panier-paiements">
+      <span class="pill-paiement">💳 CB en ligne</span>
+      <span class="pill-paiement">💵 Espèces livraison</span>
+    </div>
+    <button class="btn-checkout" id="btn-checkout" onclick="ouvrirCommande()" disabled>Commander</button>
+  </div>
+</div>
+
+<!-- MODAL COMMANDE -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal" id="modal-contenu"></div>
+</div>
+
+<!-- ADMIN -->
 <div class="admin-bar" id="admin-bar">
   <span class="admin-label">Admin TPCT</span>
   <button class="toggle-wrap" onclick="toggleSite()">
-    <div class="toggle" id="toggle-switch"></div>
-    <span class="toggle-label" id="toggle-label">Site fermé</span>
+    <div class="toggle" id="toggle-sw"></div>
+    <span class="toggle-lbl" id="toggle-lbl">Site fermé</span>
   </button>
-  <span class="admin-status" id="admin-status">–</span>
-  <button class="admin-btn" onclick="quitterAdmin()">Quitter</button>
+  <span class="admin-status-txt" id="admin-status-txt"></span>
+  <button class="admin-quit" onclick="quitterAdmin()">Quitter</button>
 </div>
 
-<!-- PIN -->
 <div class="pin-overlay" id="pin-overlay">
   <div class="pin-box">
     <h3>Accès admin</h3>
@@ -401,215 +283,366 @@ main {
   </div>
 </div>
 
-<!-- SHOPIFY BUY BUTTON -->
-<script type="text/javascript">
-(function () {
-  var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
-  if (window.ShopifyBuy) {
-    if (window.ShopifyBuy.UI) { ShopifyBuyInit(); } else { loadScript(); }
-  } else { loadScript(); }
-  function loadScript() {
-    var script = document.createElement('script');
-    script.async = true;
-    script.src = scriptURL;
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
-    script.onload = ShopifyBuyInit;
-  }
-  function ShopifyBuyInit() {
-    var client = ShopifyBuy.buildClient({
-      domain: 'jaime-les-raviolis.myshopify.com',
-      storefrontAccessToken: '4a7f3d73c5cbb77b54fdda98ff60ea3b',
-    });
-    ShopifyBuy.UI.onReady(client).then(function (ui) {
-      ui.createComponent('collection', {
-        id: '699561443673',
-        node: document.getElementById('collection-component-1788430031965'),
-        moneyFormat: '%E2%82%AC%7B%7Bamount_with_comma_separator%7D%7D',
-        options: {
-          "product": {
-            "styles": {
-              "product": {
-                "@media (min-width: 601px)": {
-                  "max-width": "calc(25% - 20px)",
-                  "margin-left": "20px",
-                  "margin-bottom": "40px",
-                  "width": "calc(25% - 20px)"
-                }
-              },
-              "button": {
-                "font-family": "Inter, sans-serif",
-                "font-size": "13px",
-                "padding-top": "10px",
-                "padding-bottom": "10px",
-                "background-color": "#1a1a1a",
-                "border-radius": "2px",
-                ":hover": { "background-color": "#333" },
-                ":focus": { "background-color": "#333" }
-              },
-              "title": {
-                "font-family": "Inter, sans-serif",
-                "font-size": "14px",
-                "font-weight": "500"
-              },
-              "price": {
-                "font-family": "Inter, sans-serif",
-                "font-size": "14px",
-                "font-weight": "400",
-                "color": "#1a1a1a"
-              }
-            },
-            "text": { "button": "Ajouter au panier" }
-          },
-          "productSet": {
-            "styles": {
-              "products": {
-                "@media (min-width: 601px)": { "margin-left": "-20px" }
-              }
-            }
-          },
-          "modalProduct": {
-            "contents": {
-              "img": false,
-              "imgWithCarousel": true,
-              "button": false,
-              "buttonWithQuantity": true
-            },
-            "styles": {
-              "product": {
-                "@media (min-width: 601px)": {
-                  "max-width": "100%",
-                  "margin-left": "0px",
-                  "margin-bottom": "0px"
-                }
-              },
-              "button": {
-                "font-family": "Inter, sans-serif",
-                "background-color": "#1a1a1a",
-                "border-radius": "2px",
-                ":hover": { "background-color": "#333" }
-              }
-            },
-            "text": { "button": "Ajouter au panier" }
-          },
-          "cart": {
-            "styles": {
-              "button": {
-                "font-family": "Inter, sans-serif",
-                "background-color": "#1a1a1a",
-                "border-radius": "2px",
-                ":hover": { "background-color": "#333" }
-              },
-              "title": { "font-family": "Inter, sans-serif" }
-            },
-            "text": {
-              "total": "Sous-total",
-              "button": "Commander"
-            }
-          },
-          "toggle": {
-            "styles": {
-              "toggle": { "background-color": "#1a1a1a" },
-              "count": { "font-family": "Inter, sans-serif" }
-            }
-          }
-        }
-      });
-    });
-  }
-})();
-</script>
-
 <script>
+// =====================
+// CONFIG
+// =====================
+const SHOPIFY_DOMAIN = 'jaime-les-raviolis.myshopify.com';
+const SHOPIFY_TOKEN = 'cbf087ee738fa257fb6e3027994956c4';
+const SHOPIFY_TOKEN_BUY = '4a7f3d73c5cbb77b54fdda98ff60ea3b';
+const COLLECTION_ID = 'gid://shopify/Collection/699561443673';
 const ADMIN_PIN = '1234';
-let siteOuvert = false;
-let adminMode = false;
 
-// Détecter ?admin dans l'URL
-if (window.location.search.includes('admin')) {
-  document.getElementById('pin-overlay').classList.add('visible');
-  document.getElementById('pin-input').focus();
+const CATS = ['Entrées','Lasagnes et Gratins','Plats Tradition traiteur','Sauces et Pesto'];
+const PRICE_MAP = (tags,origPrice) => {
+  const t=tags.join(' ').toLowerCase();
+  const isMer=/saumon|st.?jacques|cabillaud|thon|morue|crevette|gambas|paupiette/.test(t);
+  const isNoble=/veau|canard|agneau|joue|gibier/.test(t);
+  const cat=getCat(tags);
+  if(cat==='Entrées') return isMer?5.90:3.90;
+  if(cat==='Lasagnes et Gratins') return isMer?8.90:6.90;
+  if(cat==='Sauces et Pesto') return 1.90;
+  if(isNoble) return 9.90;
+  if(isMer) return 8.90;
+  return 7.90;
+};
+const getCat = tags => {
+  const t=tags.join(' ');
+  if(t.includes('Entrées')||t.includes('Salades')) return 'Entrées';
+  if(t.includes('Lasagnes')) return 'Lasagnes et Gratins';
+  if(t.includes('Sauces')) return 'Sauces et Pesto';
+  return 'Plats Tradition traiteur';
+};
+
+// =====================
+// STATE
+// =====================
+let PRODUITS=[], panier={}, categorieActive='Tous', siteOuvert=false, adminMode=false, paiementChoisi='cb';
+let shopifyCheckout=null, shopifyClient=null;
+
+// =====================
+// SHOPIFY BUY SDK
+// =====================
+function chargerShopifySDK(){
+  return new Promise(resolve=>{
+    if(window.ShopifyBuy){resolve();return;}
+    const s=document.createElement('script');
+    s.src='https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+    s.onload=resolve;
+    document.head.appendChild(s);
+  });
+}
+async function initShopifyClient(){
+  await chargerShopifySDK();
+  shopifyClient=ShopifyBuy.buildClient({
+    domain:SHOPIFY_DOMAIN,
+    storefrontAccessToken:SHOPIFY_TOKEN_BUY
+  });
+  shopifyCheckout=await shopifyClient.checkout.create();
 }
 
-// Lire config.json
-async function chargerStatut() {
-  try {
-    const r = await fetch('/config.json?t=' + Date.now());
-    if (r.ok) {
-      const cfg = await r.json();
-      siteOuvert = cfg.ouvert === true;
-    }
-  } catch(e) { siteOuvert = false; }
-  afficherSite();
-}
-
-function afficherSite() {
-  const ferme = document.getElementById('site-ferme');
-  const ouvert = document.getElementById('site-ouvert');
-  const banniere = document.getElementById('banniere');
-  if (siteOuvert) {
-    ferme.style.display = 'none';
-    ouvert.style.display = 'block';
-    banniere.textContent = '✅ Commandes ouvertes ! Livraison mardi ou mercredi — quantités limitées.';
-    banniere.className = 'ouvert';
-  } else {
-    ferme.style.display = 'block';
-    ouvert.style.display = 'none';
-    banniere.textContent = '🔒 Commandes fermées — inscrivez-vous pour être prévenu !';
-    banniere.className = '';
+// =====================
+// CHARGER PRODUITS
+// =====================
+async function chargerProduits(){
+  let all=[],cursor=null,hasNext=true;
+  while(hasNext){
+    const after=cursor?`, after:"${cursor}"`:'';
+    const q=`{collection(id:"${COLLECTION_ID}"){products(first:50${after}){pageInfo{hasNextPage endCursor}edges{node{id title tags availableForSale variants(first:1){edges{node{id price{amount}}}} images(first:1){edges{node{url}}}}}}}}`;
+    const r=await fetch(`https://${SHOPIFY_DOMAIN}/api/2026-04/graphql.json`,{
+      method:'POST',
+      headers:{'Content-Type':'application/json','X-Shopify-Storefront-Access-Token':SHOPIFY_TOKEN},
+      body:JSON.stringify({query:q})
+    });
+    const d=await r.json();
+    const page=d?.data?.collection?.products;
+    if(!page)break;
+    all.push(...page.edges.map(e=>e.node));
+    hasNext=page.pageInfo.hasNextPage;
+    cursor=page.pageInfo.endCursor;
   }
-  if (adminMode) mettreAJourAdmin();
+  let idx=1;
+  PRODUITS=all.filter(p=>p.availableForSale).map(p=>{
+    const tags=p.tags||[];
+    const origPrice=parseFloat(p.variants.edges[0]?.node?.price?.amount||0);
+    return{
+      id:idx++,
+      shopifyId:p.id,
+      variantId:p.variants.edges[0]?.node?.id,
+      title:p.title,
+      tags,
+      category:getCat(tags),
+      price:PRICE_MAP(tags,origPrice),
+      original_price:origPrice,
+      image:p.images.edges[0]?.node?.url||'',
+      stock:99
+    };
+  });
+  mettreAJourCompteurs();
+  renderProduits();
 }
 
-function filtrerCat(cat, el) {
-  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('actif'));
+// =====================
+// COMPTEURS
+// =====================
+function mettreAJourCompteurs(){
+  const nb=cat=>cat==='Tous'?PRODUITS.length:PRODUITS.filter(p=>p.category===cat).length;
+  document.getElementById('cnt-tous').textContent=`(${PRODUITS.length})`;
+  document.getElementById('cnt-entrees').textContent=`(${nb('Entrées')})`;
+  document.getElementById('cnt-lasagnes').textContent=`(${nb('Lasagnes et Gratins')})`;
+  document.getElementById('cnt-plats').textContent=`(${nb('Plats Tradition traiteur')})`;
+  document.getElementById('cnt-sauces').textContent=`(${nb('Sauces et Pesto')})`;
+}
+
+// =====================
+// RENDU PRODUITS
+// =====================
+function renderProduits(){
+  const grille=document.getElementById('grille');
+  let liste=categorieActive==='Tous'?PRODUITS:PRODUITS.filter(p=>p.category===categorieActive);
+  if(!liste.length){grille.innerHTML='<div class="no-results">Aucun plat disponible dans cette catégorie.</div>';return;}
+  grille.innerHTML=liste.map(p=>{
+    const qte=panier[p.id]||0;
+    const prixDiff=p.original_price>p.price+0.5;
+    return`<div class="produit-card">
+<div class="produit-img">
+  ${p.image?`<img src="${p.image}" alt="${p.title}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\\'produit-img-placeholder\\'>🍽️</div>'">`:'<div class="produit-img-placeholder">🍽️</div>'}
+</div>
+<div class="produit-info">
+  <div class="produit-titre">${p.title}</div>
+  <div style="margin-top:4px">
+    <span class="produit-prix">${p.price.toFixed(2).replace('.',',')} €</span>
+    ${prixDiff?`<span class="produit-prix-original">${p.original_price.toFixed(2).replace('.',',')} €</span>`:''}
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;margin-top:8px">
+    <div style="display:flex;align-items:center;border:1px solid #ddd">
+      <button style="width:28px;height:28px;border:none;background:none;cursor:pointer;font-size:14px" onclick="changerQte(${p.id},-1)">−</button>
+      <span style="width:28px;text-align:center;font-size:13px;font-weight:500" id="qte-${p.id}">${qte}</span>
+      <button style="width:28px;height:28px;border:none;background:none;cursor:pointer;font-size:14px" onclick="changerQte(${p.id},1)">+</button>
+    </div>
+    <button class="btn-ajout${qte>0?' ajoute':''}" id="btn-${p.id}" onclick="ajouterPanier(${p.id})" style="flex:1;margin-top:0">
+      ${qte>0?'✓ Ajouté':'Ajouter au panier'}
+    </button>
+  </div>
+</div></div>`;
+  }).join('');
+}
+
+function filtrer(cat,el){
+  categorieActive=cat;
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('actif'));
   el.classList.add('actif');
-  // Le Buy Button gère sa propre collection — filtrage visuel uniquement
+  renderProduits();
 }
 
-function inscrire() {
-  const prenom = document.getElementById('prenom').value.trim();
-  const email = document.getElementById('email').value.trim();
-  if (!prenom || !email) { alert('Merci de renseigner votre prénom et email.'); return; }
-  document.getElementById('form-fields').style.display = 'none';
-  document.getElementById('succes').style.display = 'block';
+// =====================
+// PANIER
+// =====================
+function changerQte(id,delta){
+  const p=PRODUITS.find(x=>x.id===id);
+  const actuel=panier[id]||0;
+  const nv=Math.max(0,Math.min(p.stock,actuel+delta));
+  if(nv===0)delete panier[id];else panier[id]=nv;
+  mettreAJourCarteQte(id);
+  mettreAJourBadge();
 }
-
-// ADMIN
-function validerPin() {
-  const pin = document.getElementById('pin-input').value;
-  if (pin === ADMIN_PIN) {
-    document.getElementById('pin-overlay').classList.remove('visible');
-    document.getElementById('admin-bar').classList.add('visible');
-    adminMode = true;
-    mettreAJourAdmin();
-  } else {
-    document.getElementById('pin-err').style.display = 'block';
-    document.getElementById('pin-input').value = '';
+function ajouterPanier(id){
+  const p=PRODUITS.find(x=>x.id===id);
+  if(!panier[id])panier[id]=1;else if(panier[id]<p.stock)panier[id]++;
+  mettreAJourCarteQte(id);
+  mettreAJourBadge();
+}
+function mettreAJourCarteQte(id){
+  const el=document.getElementById('qte-'+id);
+  const btn=document.getElementById('btn-'+id);
+  if(el)el.textContent=panier[id]||0;
+  if(btn){
+    if(panier[id]>0){btn.classList.add('ajoute');btn.textContent='✓ Ajouté';}
+    else{btn.classList.remove('ajoute');btn.textContent='Ajouter au panier';}
   }
 }
-
-function mettreAJourAdmin() {
-  const sw = document.getElementById('toggle-switch');
-  const lbl = document.getElementById('toggle-label');
-  const status = document.getElementById('admin-status');
-  sw.className = 'toggle' + (siteOuvert ? ' on' : '');
-  lbl.textContent = siteOuvert ? 'Site ouvert' : 'Site fermé';
-  status.textContent = siteOuvert ? '✓ Visible pour les clients' : '✗ Invisible pour les clients';
+function mettreAJourBadge(){
+  const total=Object.values(panier).reduce((s,q)=>s+q,0);
+  document.getElementById('badge-nb').textContent=total;
+  document.getElementById('btn-checkout').disabled=total===0;
+}
+function calcTotal(){
+  return Object.entries(panier).reduce((s,[id,qte])=>{
+    const p=PRODUITS.find(x=>x.id===parseInt(id));
+    return s+(p?p.price*qte:0);
+  },0);
+}
+function ouvrirPanier(){
+  renderPanierPanel();
+  document.getElementById('panier-panel').classList.add('visible');
+  document.getElementById('overlay').classList.add('visible');
+}
+function fermerPanier(){
+  document.getElementById('panier-panel').classList.remove('visible');
+  document.getElementById('overlay').classList.remove('visible');
+}
+function renderPanierPanel(){
+  const cont=document.getElementById('panier-items');
+  const total=calcTotal();
+  document.getElementById('panier-total').textContent=total.toFixed(2).replace('.',',')+' €';
+  const lignes=Object.entries(panier);
+  if(!lignes.length){cont.innerHTML='<div class="panier-vide">Votre panier est vide.</div>';return;}
+  cont.innerHTML=lignes.map(([id,qte])=>{
+    const p=PRODUITS.find(x=>x.id===parseInt(id));if(!p)return'';
+    return`<div class="panier-item">
+<img src="${p.image||''}" alt="${p.title}" onerror="this.style.background='#f5f5f5'">
+<div class="panier-item-info">
+  <div class="panier-item-titre">${p.title}</div>
+  <div class="panier-item-prix">${(p.price*qte).toFixed(2).replace('.',',')} €</div>
+  <div class="panier-item-qte">
+    <button class="qte-btn" onclick="changerQte(${p.id},-1);renderPanierPanel()">−</button>
+    <span class="qte-val">${qte}</span>
+    <button class="qte-btn" onclick="changerQte(${p.id},1);renderPanierPanel()">+</button>
+    <button class="btn-suppr" onclick="delete panier[${p.id}];mettreAJourBadge();renderPanierPanel();renderProduits()">✕</button>
+  </div>
+</div></div>`;
+  }).join('');
 }
 
-async function toggleSite() {
-  siteOuvert = !siteOuvert;
+// =====================
+// COMMANDE
+// =====================
+function ouvrirCommande(){
+  fermerPanier();
+  const modal=document.getElementById('modal-contenu');
+  const total=calcTotal();
+  const lignes=Object.entries(panier);
+  modal.innerHTML=`
+<h2>Ma commande</h2>
+<p class="modal-sub">Renseignez vos coordonnées pour finaliser.</p>
+<div class="form-group"><label>Prénom et Nom *</label><input type="text" id="cmd-nom" placeholder="Marie Dupont"/></div>
+<div class="form-group"><label>Téléphone *</label><input type="tel" id="cmd-tel" placeholder="06 12 34 56 78"/></div>
+<div class="form-group"><label>Email</label><input type="email" id="cmd-email" placeholder="marie@exemple.fr"/></div>
+<div class="form-group"><label>Adresse de livraison *</label><textarea id="cmd-adresse" placeholder="12 rue de la Paix, 57000 Ma Commune"></textarea></div>
+<div class="form-group"><label>Mode de paiement *</label>
+<div class="paiement-choix">
+<div class="paiement-opt sel" id="opt-cb" onclick="choisirPaiement('cb')"><div class="ico">💳</div><div class="nom">Carte bancaire</div><div class="desc">Paiement en ligne</div></div>
+<div class="paiement-opt" id="opt-esp" onclick="choisirPaiement('especes')"><div class="ico">💵</div><div class="nom">Espèces</div><div class="desc">À la livraison</div></div>
+</div></div>
+<div class="modal-recap">
+<div class="modal-recap-titre">Récapitulatif</div>
+${lignes.map(([id,qte])=>{const p=PRODUITS.find(x=>x.id===parseInt(id));return p?`<div class="recap-ligne"><span>${p.title} × ${qte}</span><span>${(p.price*qte).toFixed(2).replace('.',',')} €</span></div>`:''}).join('')}
+<div class="recap-total"><span>Total</span><span>${total.toFixed(2).replace('.',',')} €</span></div>
+</div>
+<label class="newsletter-check"><input type="checkbox" id="cmd-nl" checked/><span>M'avertir pour le prochain menu<small>SMS + email dès l'ouverture</small></span></label>
+<button class="btn-valider" onclick="validerCommande()">Confirmer ma commande</button>
+<button class="btn-annuler" onclick="fermerModal()">Annuler</button>`;
+  document.getElementById('modal-overlay').classList.add('visible');
+}
+function choisirPaiement(type){
+  paiementChoisi=type;
+  document.getElementById('opt-cb').className='paiement-opt'+(type==='cb'?' sel':'');
+  document.getElementById('opt-esp').className='paiement-opt'+(type==='especes'?' sel':'');
+}
+function fermerModal(){document.getElementById('modal-overlay').classList.remove('visible');}
+function validerCommande(){
+  const nom=document.getElementById('cmd-nom').value.trim();
+  const tel=document.getElementById('cmd-tel').value.trim();
+  const adresse=document.getElementById('cmd-adresse').value.trim();
+  if(!nom||!tel||!adresse){alert('Merci de remplir les champs obligatoires.');return;}
+  const total=calcTotal();
+  const modal=document.getElementById('modal-contenu');
+  modal.innerHTML=`<div class="confirmation">
+<div class="confirmation-ico">✓</div>
+<h3>Commande confirmée !</h3>
+<p>Merci <strong>${nom}</strong> pour votre commande.</p>
+<p>Livraison <strong>mardi après-midi ou mercredi matin</strong> à :</p>
+<p><strong>${adresse}</strong></p>
+${paiementChoisi==='especes'?`<div class="especes-info">💵 Paiement en espèces à la livraison : <strong>${total.toFixed(2).replace('.',',')} €</strong></div>`:`<p style="margin-top:10px;font-size:13px;color:#666">💳 Lien de paiement envoyé au <strong>${tel}</strong></p>`}
+<button class="btn-valider" style="margin-top:20px" onclick="fermerModal()">Fermer</button>
+</div>`;
+  panier={};mettreAJourBadge();renderProduits();
+}
+
+// =====================
+// INSCRIPTION
+// =====================
+function inscrire(){
+  const prenom=document.getElementById('prenom').value.trim();
+  const email=document.getElementById('email').value.trim();
+  if(!prenom||!email){alert('Merci de renseigner votre prénom et email.');return;}
+  document.getElementById('form-fields').style.display='none';
+  document.getElementById('succes-inscription').style.display='block';
+}
+
+// =====================
+// STATUT SITE
+// =====================
+async function chargerStatut(){
+  try{
+    const r=await fetch('/config.json?t='+Date.now());
+    if(r.ok){const cfg=await r.json();siteOuvert=cfg.ouvert===true;}
+  }catch(e){siteOuvert=false;}
   afficherSite();
-  // Note: pour persister, modifiez config.json sur GitHub
-  // siteOuvert = true → {"ouvert": true} sur GitHub
+}
+function afficherSite(){
+  const ferme=document.getElementById('site-ferme');
+  const ouvert=document.getElementById('site-ouvert');
+  const banniere=document.getElementById('banniere');
+  const btnPanier=document.getElementById('btn-panier');
+  if(siteOuvert){
+    ferme.style.display='none';ouvert.style.display='block';
+    if(btnPanier)btnPanier.style.display='flex';
+    banniere.textContent='✅ Commandes ouvertes — livraison mardi ou mercredi. Quantités limitées !';
+    banniere.className='ouvert';
+    if(!PRODUITS.length)chargerProduits();
+  }else{
+    ferme.style.display='block';ouvert.style.display='none';
+    if(btnPanier)btnPanier.style.display='none';
+    banniere.textContent='🔒 Commandes fermées — inscrivez-vous pour être prévenu !';
+    banniere.className='';
+  }
+  if(adminMode)mettreAJourAdmin();
 }
 
-function quitterAdmin() {
-  adminMode = false;
+// =====================
+// ADMIN
+// =====================
+if(window.location.search.includes('admin')){
+  document.getElementById('pin-overlay').style.display='flex';
+  setTimeout(()=>document.getElementById('pin-input').focus(),100);
+}
+function validerPin(){
+  const pin=document.getElementById('pin-input').value;
+  if(pin===ADMIN_PIN){
+    document.getElementById('pin-overlay').style.display='none';
+    document.getElementById('admin-bar').classList.add('visible');
+    adminMode=true;mettreAJourAdmin();
+  }else{
+    document.getElementById('pin-err').style.display='block';
+    document.getElementById('pin-input').value='';
+  }
+}
+function mettreAJourAdmin(){
+  const sw=document.getElementById('toggle-sw');
+  const lbl=document.getElementById('toggle-lbl');
+  const status=document.getElementById('admin-status-txt');
+  sw.className='toggle'+(siteOuvert?' on':'');
+  lbl.textContent=siteOuvert?'Site ouvert':'Site fermé';
+  status.textContent=siteOuvert?'✓ Visible pour les clients':'✗ Non visible';
+}
+function toggleSite(){
+  siteOuvert=!siteOuvert;
+  afficherSite();
+  // Pour persister: modifier config.json sur GitHub (ouvert: true/false)
+}
+function quitterAdmin(){
+  adminMode=false;
   document.getElementById('admin-bar').classList.remove('visible');
-  window.history.replaceState({}, '', window.location.pathname);
+  window.history.replaceState({},'',window.location.pathname);
 }
 
+// Modal close on overlay click
+document.getElementById('modal-overlay').addEventListener('click',function(e){if(e.target===this)fermerModal();});
+
+// =====================
+// INIT
+// =====================
 chargerStatut();
 </script>
 </body>
