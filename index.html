@@ -262,6 +262,16 @@ main{max-width:1200px;margin:0 auto;padding:32px 40px}
   <div class="modal" id="modal-contenu"></div>
 </div>
 
+<!-- Netlify Form pour commandes espèces (caché) -->
+<form name="commande-especes" netlify netlify-honeypot="bot-field" hidden>
+  <input type="text" name="nom"/>
+  <input type="text" name="telephone"/>
+  <input type="email" name="email"/>
+  <input type="text" name="adresse"/>
+  <input type="text" name="produits"/>
+  <input type="text" name="total"/>
+</form>
+
 <!-- ADMIN -->
 <div class="admin-bar" id="admin-bar">
   <span class="admin-label">Admin TPCT</span>
@@ -567,7 +577,7 @@ async function validerCommande(){
     return;
   }
   
-  // Paiement espèces → créer commande dans Shopify via Netlify Function
+  // Paiement espèces → envoi email via Netlify Forms
   const total=calcTotal();
   const modal=document.getElementById('modal-contenu');
   modal.innerHTML='<div style="text-align:center;padding:40px"><p>Enregistrement de votre commande...</p></div>';
@@ -575,36 +585,33 @@ async function validerCommande(){
   try {
     const produits=Object.entries(panier).map(([id,qte])=>{
       const p=PRODUITS.find(x=>x.id===parseInt(id));
-      return p?{title:p.title,price:p.price,qte}:null;
-    }).filter(Boolean);
+      return p?`${p.title} x${qte} = ${(p.price*qte).toFixed(2)}€`:null;
+    }).filter(Boolean).join(' | ');
     
-    const resp=await fetch('/api/create-order',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({nom,tel,email:document.getElementById('cmd-email').value.trim(),adresse,produits,total})
-    });
-    const result=await resp.json();
+    const emailClient = document.getElementById('cmd-email').value.trim();
     
-    if(result.ok){
-      modal.innerHTML=`<div class="confirmation">
+    // Envoyer via Netlify Forms
+    const formData = new FormData();
+    formData.append('form-name', 'commande-especes');
+    formData.append('nom', nom);
+    formData.append('telephone', tel);
+    formData.append('email', emailClient);
+    formData.append('adresse', adresse);
+    formData.append('produits', produits);
+    formData.append('total', total.toFixed(2) + ' €');
+    
+    await fetch('/', {method:'POST', body: formData});
+    
+    modal.innerHTML=`<div class="confirmation">
 <div class="confirmation-ico">✓</div>
 <h3>Commande confirmée !</h3>
 <p>Merci <strong>${nom}</strong> pour votre commande.</p>
 <p>Livraison <strong>mardi après-midi ou mercredi matin</strong> à :</p>
 <p><strong>${adresse}</strong></p>
 <div class="especes-info">💵 Paiement en espèces à la livraison : <strong>${total.toFixed(2).replace('.',',')} €</strong></div>
-<p style="font-size:12px;color:#888;margin-top:8px">Commande #${result.orderId} enregistrée</p>
+<p style="font-size:13px;color:#666;margin-top:8px">Vous recevrez une confirmation par SMS.</p>
 <button class="btn-valider" style="margin-top:20px" onclick="fermerModal()">Fermer</button>
 </div>`;
-    } else {
-      modal.innerHTML=`<div class="confirmation">
-<div class="confirmation-ico">✓</div>
-<h3>Commande reçue !</h3>
-<p>Merci <strong>${nom}</strong>. Nous vous confirmons votre commande.</p>
-<div class="especes-info">💵 Paiement en espèces à la livraison : <strong>${total.toFixed(2).replace('.',',')} €</strong></div>
-<button class="btn-valider" style="margin-top:20px" onclick="fermerModal()">Fermer</button>
-</div>`;
-    }
   } catch(e) {
     modal.innerHTML=`<div class="confirmation">
 <div class="confirmation-ico">✓</div>
