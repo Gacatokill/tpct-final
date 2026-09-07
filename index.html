@@ -1029,8 +1029,8 @@ function ouvrirCommande(){
   html+='<div class="form-grp"><label>Email</label><input type="email" id="cmd-email" placeholder="marie@exemple.fr"/></div>';
   html+='<div class="form-grp"><label>Adresse *</label><textarea id="cmd-adresse" placeholder="12 rue de la Paix, 57000 Metz"></textarea></div>';
   html+='<div class="form-grp"><label>Paiement *</label><div class="pmt-choix">';
-  html+='<div class="pmt-opt sel" id="opt-cb" onclick="choisirPmt(this,"cb")"><div class="ico">&#128179;</div><div class="nom">Carte bancaire</div><div class="desc">En ligne</div></div>';
-  html+='<div class="pmt-opt" id="opt-esp" onclick="choisirPmt(this,"especes")"><div class="ico">&#128181;</div><div class="nom">Espèces</div><div class="desc">À la livraison</div></div>';
+  html+='<div class="pmt-opt sel" id="opt-cb" onclick="choisirPmt(this,0)"><div class="ico">&#128179;</div><div class="nom">Carte bancaire</div><div class="desc">En ligne</div></div>';
+  html+='<div class="pmt-opt" id="opt-esp" onclick="choisirPmt(this,1)"><div class="ico">&#128181;</div><div class="nom">Esp&egrave;ces</div><div class="desc">&#192; la livraison</div></div>';
   html+='</div></div>';
   html+='<div class="modal-recap"><div class="modal-recap-titre">Récapitulatif</div>';
   html+=recapHtml;
