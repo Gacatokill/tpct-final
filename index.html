@@ -642,9 +642,15 @@ function inscrire(){
 // =====================
 async function chargerStatut(){
   try{
-    const r=await fetch('/config.json?t='+Date.now());
+    const r=await fetch('/api/toggle-site?t='+Date.now());
     if(r.ok){const cfg=await r.json();siteOuvert=cfg.ouvert===true;}
-  }catch(e){siteOuvert=false;}
+    else throw new Error('API error');
+  }catch(e){
+    try{
+      const r2=await fetch('/config.json?t='+Date.now());
+      if(r2.ok){const cfg=await r2.json();siteOuvert=cfg.ouvert===true;}
+    }catch(e2){siteOuvert=false;}
+  }
   afficherSite();
 }
 function afficherSite(){
@@ -693,10 +699,27 @@ function mettreAJourAdmin(){
   lbl.textContent=siteOuvert?'Site ouvert':'Site fermé';
   status.textContent=siteOuvert?'✓ Visible pour les clients':'✗ Non visible';
 }
-function toggleSite(){
-  siteOuvert=!siteOuvert;
-  afficherSite();
-  // Pour persister: modifier config.json sur GitHub (ouvert: true/false)
+async function toggleSite(){
+  const newStatut = !siteOuvert;
+  const btn = document.getElementById('toggle-sw');
+  btn.style.opacity = '0.5';
+  try {
+    const r = await fetch('/api/toggle-site', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({pin: ADMIN_PIN, ouvert: newStatut})
+    });
+    const result = await r.json();
+    if(result.ok) {
+      siteOuvert = newStatut;
+      afficherSite();
+    } else {
+      alert('Erreur: ' + (result.error || 'Impossible de changer le statut'));
+    }
+  } catch(e) {
+    alert('Erreur réseau. Réessayez.');
+  }
+  btn.style.opacity = '1';
 }
 function quitterAdmin(){
   adminMode=false;
