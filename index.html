@@ -662,6 +662,7 @@ function quitterAdmin(){
   document.getElementById('admin-bar').classList.remove('visible');
   window.history.replaceState({},'',window.location.pathname);
 }
+function fermerModal(){document.getElementById('modal-overlay').classList.remove('visible');}
 function choisirPmt(el,t){
   paiementChoisi=t===0?'cb':'especes';
   document.getElementById('opt-cb').className='pmt-opt'+(t===0?' sel':'');
