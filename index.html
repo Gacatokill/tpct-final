@@ -524,14 +524,23 @@ function ouvrirCommande(){
   document.getElementById('modal-overlay').classList.add('visible');
 }
 async function validerCommande(){
-  const nom=document.getElementById('cmd-nom').value.trim();
-  const tel=document.getElementById('cmd-tel').value.trim();
-  const adresse=document.getElementById('cmd-adresse').value.trim();
+  // Sauvegarder les valeurs immédiatement avant tout
+  var nomEl=document.getElementById('cmd-nom');
+  var telEl=document.getElementById('cmd-tel');
+  var adresseEl=document.getElementById('cmd-adresse');
+  var emailEl=document.getElementById('cmd-email');
+  if(!nomEl||!telEl||!adresseEl){alert('Erreur: formulaire introuvable.');return;}
+  const nom=nomEl.value.trim();
+  const tel=telEl.value.trim();
+  const adresse=adresseEl.value.trim();
+  const emailVal=emailEl?emailEl.value.trim():'';
+  const pmt=paiementChoisi;
+  console.log('DEBUG pmt:', pmt, 'paiementChoisi:', paiementChoisi);
   if(!nom||!tel||!adresse){alert('Merci de remplir les champs obligatoires.');return;}
   const total=calcTotal();
   const modal=document.getElementById('modal-contenu');
   
-  if(paiementChoisi==='cb'){
+  if(pmt==='cb'){
     try{
       await chargerShopifySDK();
       const client=ShopifyBuy.buildClient({domain:SHOPIFY_DOMAIN,storefrontAccessToken:SHOPIFY_TOKEN_BUY});
@@ -555,7 +564,7 @@ async function validerCommande(){
     const fd=new FormData();
     fd.append('form-name','commande-especes');
     fd.append('nom',nom);fd.append('telephone',tel);
-    fd.append('email',document.getElementById('cmd-email').value.trim());
+    fd.append('email',emailVal);
     fd.append('adresse',adresse);fd.append('produits',produits);
     fd.append('total',total.toFixed(2)+' €');
     const resp=await fetch('/',{method:'POST',body:fd});
@@ -669,6 +678,7 @@ function choisirPmt(el,t){
   document.getElementById('opt-esp').className='pmt-opt'+(t===1?' sel':'');
 }
 document.getElementById('modal-overlay').addEventListener('click',function(e){if(e.target===this)fermerModal();});
+document.getElementById('modal-contenu').addEventListener('click',function(e){e.stopPropagation();});
 chargerStatut();
 </script>
 </body>
