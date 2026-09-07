@@ -1,5 +1,3 @@
-import { getStore } from "@netlify/blobs";
-
 export default async (req) => {
   const headers = {
     'Content-Type': 'application/json',
@@ -12,13 +10,18 @@ export default async (req) => {
     return new Response(null, { headers });
   }
 
-  const store = getStore({ name: "site-config", consistency: "strong" });
+  const BIN_ID = process.env.JSONBIN_ID;
+  const API_KEY = process.env.JSONBIN_KEY;
+  const BIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
 
   // GET — lire le statut
   if (req.method === 'GET') {
     try {
-      const val = await store.get("ouvert");
-      return new Response(JSON.stringify({ ouvert: val === "true" }), { headers });
+      const r = await fetch(BIN_URL + '/latest', {
+        headers: { 'X-Master-Key': API_KEY }
+      });
+      const data = await r.json();
+      return new Response(JSON.stringify({ ouvert: data.record?.ouvert === true }), { headers });
     } catch(e) {
       return new Response(JSON.stringify({ ouvert: false }), { headers });
     }
@@ -31,8 +34,16 @@ export default async (req) => {
       if (body.pin !== process.env.ADMIN_PIN) {
         return new Response(JSON.stringify({ error: 'PIN incorrect' }), { status: 401, headers });
       }
-      await store.set("ouvert", body.ouvert ? "true" : "false");
-      return new Response(JSON.stringify({ ok: true, ouvert: body.ouvert }), { headers });
+      const r = await fetch(BIN_URL, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Master-Key': API_KEY
+        },
+        body: JSON.stringify({ ouvert: body.ouvert })
+      });
+      const data = await r.json();
+      return new Response(JSON.stringify({ ok: true, ouvert: data.record?.ouvert }), { headers });
     } catch(e) {
       return new Response(JSON.stringify({ error: e.message }), { status: 500, headers });
     }
