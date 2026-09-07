@@ -559,7 +559,8 @@ async function validerCommande(){
     fd.append('email',document.getElementById('cmd-email').value.trim());
     fd.append('adresse',adresse);fd.append('produits',produits);
     fd.append('total',total.toFixed(2)+' €');
-    await fetch('/',{method:'POST',body:fd});
+    const resp=await fetch('/',{method:'POST',body:fd});
+    console.log('Form submitted, status:',resp.status);
     modal.innerHTML=`<div class="confirmation"><div class="conf-ico">✓</div><h3>Commande confirmée !</h3><p>Merci <strong>${nom}</strong> pour votre commande.</p><p>Livraison <strong>mardi après-midi ou mercredi matin</strong> à :</p><p><strong>${adresse}</strong></p><div class="esp-info">💵 Paiement en espèces à la livraison : <strong>${total.toFixed(2).replace('.',',')} €</strong></div><button class="btn-valider" style="margin-top:20px" onclick="fermerModal()">Fermer</button></div>`;
   }catch(e){
     modal.innerHTML=`<div class="confirmation"><div class="conf-ico">✓</div><h3>Commande reçue !</h3><p>Merci <strong>${nom}</strong>.</p><div class="esp-info">💵 Espèces à la livraison : <strong>${total.toFixed(2).replace('.',',')} €</strong></div><button class="btn-valider" style="margin-top:20px" onclick="fermerModal()">Fermer</button></div>`;
