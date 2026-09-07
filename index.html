@@ -662,6 +662,11 @@ function quitterAdmin(){
   document.getElementById('admin-bar').classList.remove('visible');
   window.history.replaceState({},'',window.location.pathname);
 }
+function choisirPmt(el,t){
+  paiementChoisi=t===0?'cb':'especes';
+  document.getElementById('opt-cb').className='pmt-opt'+(t===0?' sel':'');
+  document.getElementById('opt-esp').className='pmt-opt'+(t===1?' sel':'');
+}
 document.getElementById('modal-overlay').addEventListener('click',function(e){if(e.target===this)fermerModal();});
 chargerStatut();
 </script>
